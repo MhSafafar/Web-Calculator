@@ -12,6 +12,10 @@ function clearDisplay() {
     display.innerText = '0';
 };
 
+function backspace(){
+    display.innerText = display.innerText.slice(0, -1) || "0"
+};
+
 function calculate() {
     try {
         let expression = display.innerText;
@@ -29,18 +33,19 @@ function calculate() {
     };
 };
 
-// Allow keyboard input
+// Allow direct keyboard input
 document.addEventListener('keydown', (event) => {
     const key = event.key;
     if (key >= '0' && key <= '9' || key === '.' || key === '+' || key === '-' || key === '*' || key === '/') {
         appendToDisplay(key);
     } else if (key === 'Enter') {
+        event.preventDefault();
         calculate();
-    } else if (key === 'Escape') {
+    } else if (key === 'Escape' || 'c') {
         clearDisplay();
-    } else if (key === 's') {
-        appendToDisplay('sqrt(');
     } else if (key === '(' || key === ')') {
         appendToDisplay(key);
+    } else if (key === 'Backspace'){
+        backspace();
     };
 });
