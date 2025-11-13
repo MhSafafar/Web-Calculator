@@ -8,6 +8,16 @@ function appendToDisplay(value) {
   }
 }
 
+function inputValidation() {
+  try {
+    let eval = display.innerText;
+    // Replace sqrt() with Math.sqrt()
+    eval = eval.replace(/√\(/g, "Math.sqrt(");
+  } catch {
+    alert("fart hard")
+  }
+}
+
 function clearDisplay() {
   display.innerText = "0";
 }
@@ -20,7 +30,7 @@ function calculate() {
   try {
     let expression = display.innerText;
     // Replace sqrt() with Math.sqrt()
-    expression = expression.replace(/sqrt\(/g, "Math.sqrt(");
+    expression = expression.replace(/√/g, "Math.sqrt(");
 
     let result = eval(expression);
     if (isNaN(result) || !isFinite(result)) {
@@ -47,10 +57,13 @@ document.addEventListener("keydown", (event) => {
   } else if (key === "Enter") {
     event.preventDefault();
     calculate();
-  } else if (key === "Escape" || key === "c" || key === "C") {
+
+  } else if (key === "Escape" || key === "c") {
     clearDisplay();
+
   } else if (key === "(" || key === ")") {
     appendToDisplay(key);
+
   } else if (key === "Backspace") {
     event.preventDefault();
     backspace();
