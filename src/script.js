@@ -43,6 +43,8 @@ function inputValidation(eval_str) {
     eval_str = eval_str.replace(/\)(?=[\d.])/g, ')*');
     // Replacesqrt "√" with Math.sqrt( in eval_str
     eval_str = eval_str.replace(/√/g, "Math.sqrt(");
+    // Auto close the Parenthesis when finds an operator after sqrt(
+    eval_str = eval_str.replace(/Math\.sqrt\(([^()+\-*/]+)([+\-*/])/g,"Math.sqrt($1)$2");
     // Auto close prantheses
     eval_str = handleParentheses(eval_str);
 
@@ -61,7 +63,7 @@ function calculate() {
       throw new Error("Invalid calculation");
     }
     // Round if it was a long float
-    result = result.toFixed(3).replace(/\.?0+$/, '');
+    result = Number(result.toPrecision(3));
     display.innerText = result;
 
   } catch (error) {
@@ -87,7 +89,7 @@ document.addEventListener("keydown", (event) => {
     event.preventDefault();
     calculate();
 
-  } else if (key === "Escape" || key === "c") {
+  } else if (key === "Escape" || key === "Delete" || key === "c") {
     clearDisplay();
 
   } else if (key === "(" || key === ")") {
