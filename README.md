@@ -2,5 +2,5 @@
     <b>A simple web-based calculator, built with Vanilla JS</b>
 </p>
 <p align="center"> 
-    <img src="https://github.com/user-attachments/assets/d5b630b0-1c7e-46a7-8155-c0705cc6ae54" >
+    <img src="https://github.com/user-attachments/assets/dbef9714-c416-43c2-ab74-950b22d5fb2b" >
 </p>
