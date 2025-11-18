@@ -60,6 +60,8 @@ function inputValidation(eval_str) {
     eval_str = eval_str.replace(/√/g, "Math.sqrt");
     // Add "*" before "√", handles cases like 2√16
     eval_str = eval_str.replace(/([\d.]+)Math/g, '$1*Math.sqrt(');
+    // Replace "log" and with "Math.log10("
+    eval_str = eval_str.replace(/log/g, "Math.log10(");
     // Replace factorial (simple integer case)
     eval_str = eval_str.replace(/(\d+)!/g, 'factorial($1)');
     // Auto close prantheses
