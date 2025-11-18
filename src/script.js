@@ -20,11 +20,6 @@ function backspace() {
   display.innerText = display.innerText.slice(0, -1) || "0";
 }
 
-function pi(eval_str){
-    // Replace "π" with "Math.PI"
-    return eval_str = eval_str.replace(/π/g, "Math.PI");
-}
-
 function factorial(numb) {
   if (isNaN(numb)) throw new Error("Invalid factorial");
   let result = 1;
@@ -51,24 +46,23 @@ function handleParentheses(eval_str) {
 
 function inputValidation(eval_str) {
   try {
+    // Replace "π" with "(3.142)"
+    eval_str = eval_str.replace(/π/g, "(3.142)");
     // Add "*" before or after prantheses that haven't any operators
     eval_str = eval_str.replace(/([\d.]+)\(/g, '$1*(');
     eval_str = eval_str.replace(/\)(?=[\d.])/g, ')*');
-    // Replace "π" with "Math.PI"
-    eval_str = pi(eval_str)
     // Replace "√" with "Math.sqrt(" in "eval_str"
     eval_str = eval_str.replace(/√/g, "Math.sqrt");
-    // Add "*" before "√", handles cases like 2√16
-    eval_str = eval_str.replace(/([\d.]+)Math/g, '$1*Math.sqrt(');
     // Replace "log" and with "Math.log10("
     eval_str = eval_str.replace(/log/g, "Math.log10(");
     // Replace "mod" and with "%"
     eval_str = eval_str.replace(/mod/g, "%");
     // Replace factorial (simple integer case)
     eval_str = eval_str.replace(/(\d+)!/g, 'factorial($1)');
+    // If there was a number before the operator, add "*" before "Math.", handles cases like 2√(16)
+    eval_str = eval_str.replace(/([\d.]+)Math/g, '$1*Math');
     // Auto close prantheses
     eval_str = handleParentheses(eval_str);
-
   } catch {
      display.innerText = "Error";
   }
