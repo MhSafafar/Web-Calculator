@@ -48,6 +48,8 @@ function inputValidation(eval_str) {
   try {
     // Replace "π" with "(3.142)"
     eval_str = eval_str.replace(/π/g, "(3.142)");
+    // Replace "÷" with "/"
+    eval_str = eval_str.replace(/÷/g, "/");
     // Add "*" before or after prantheses that haven't any operators
     eval_str = eval_str.replace(/([\d.]+)\(/g, '$1*(');
     eval_str = eval_str.replace(/\)(?=[\d.])/g, ')*');
@@ -78,7 +80,7 @@ function calculate() {
       throw new Error("Invalid calculation");
     }
     // Round if it was a long float
-    result = Number(result.toPrecision(3));
+    result = Number(result.toPrecision(4));
     display.innerText = result;
 
   } catch (error) {
