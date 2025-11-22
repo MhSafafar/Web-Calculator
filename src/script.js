@@ -97,6 +97,7 @@ return;
 }
 switch (key) {
   case "/":
+    event.preventDefault();
     appendToDisplay("÷");
     break;
     
