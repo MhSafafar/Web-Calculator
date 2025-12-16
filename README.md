@@ -1,8 +1,9 @@
-<h3 align="center">A simple web-based calculator, built with Vanilla JS<br>
+<h3 align="center">A simple web-based calculator, built with Vanilla JS<br>to 
     <a href="https://a-partovii.github.io/Web-Calculator/src/web-calculator.html">
         👉Check Online👈
     </a>
 </h3>
+<br>
 <br>
 <p align="center"> 
     <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff">&nbsp
